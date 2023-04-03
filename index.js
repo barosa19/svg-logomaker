@@ -5,7 +5,6 @@ const {Circle, Triangle, Square } = require('./lib/shapes')
 
 function generatelogo(shapeInfo) {
     const { text, textColor, shape, shapeColor } = shapeInfo
-    //? Help me understand switch!!
     let shapeRendered;
     switch (shape) {
         case "Circle":
@@ -20,12 +19,7 @@ function generatelogo(shapeInfo) {
             const squareSelected = new Square(text, textColor, shape, shapeColor)
             shapeRendered = squareSelected.render()
             break;
-        //? Do I need a deafult when I have a list?
-        default:
-            console.log('An error has occured. Please select a shape')
     }
-    //? Is this where I should console log?
-    console.log('Generated logo.svg')
     return shapeRendered
 }
 
@@ -33,6 +27,7 @@ function init() {
     inquirer.prompt(questions)
         .then((answers) => {
             fs.writeFile('./examples/logo.svg', generatelogo(answers), err => console.log(err))
+            console.log('Generated logo.svg')
         })
         .catch((err) => console.log(err))
 }
